@@ -105,12 +105,7 @@ func (self *jsbeautifier) unpack(s *string, eval_code bool) *string {
 	return unpackers.Run(s)
 }
 
-func (self *jsbeautifier) beautify(s *string) (string, error) {
-
-	if !utils.InStrArray(self.options["brace_style"].(string), []string{"expand", "collapse", "end-expand", "none"}) {
-		return "", errors.New("opts.brace-style must be \"expand\", \"collapse\", \"end-exapnd\", or \"none\".")
-	}
-
+func (self *jsbeautifier) beautify(s *string) string {
 	s = self.blank_state(s)
 
 	input := self.unpack(s, self.options["eval_code"].(bool))
@@ -132,7 +127,7 @@ func (self *jsbeautifier) beautify(s *string) (string, error) {
 		sweet_code += "\n"
 	}
 
-	return sweet_code, nil
+	return sweet_code
 }
 
 func (self *jsbeautifier) parse_token(t tokenizer.Token) {
@@ -955,7 +950,7 @@ func New(options optargs.MapType) *jsbeautifier {
 	return b
 }
 
-func Beautify(data *string, options optargs.MapType) (string, error) {
+func Beautify(data *string, options optargs.MapType) string {
 	b := New(options)
 	return b.beautify(data)
 }
@@ -967,6 +962,6 @@ func BeautifyFile(file string, options optargs.MapType) *string {
 
 	data, _ := ioutil.ReadFile(file)
 	sdata := string(data)
-	val, _ := Beautify(&sdata, options)
+	val := Beautify(&sdata, options)
 	return &val
 }

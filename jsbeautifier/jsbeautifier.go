@@ -1,7 +1,6 @@
 package jsbeautifier
 
 import (
-	"errors"
 	"io/ioutil"
 	"strings"
 

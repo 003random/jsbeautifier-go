@@ -6,8 +6,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/ditashi/jsbeautifier-go/optargs"
-	"github.com/ditashi/jsbeautifier-go/utils"
+	"github.com/003random/jsbeautifier-go/optargs"
+	"github.com/003random/jsbeautifier-go/utils"
 )
 
 // Copyright (c) 2014 Ditashi Sayomi
